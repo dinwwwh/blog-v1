@@ -6,7 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <title>test</title>
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    {{-- <script src="//unpkg.com/alpinejs" defer></script> --}}
+    <title>@dinhdjj</title>
 </head>
 
 <body>
