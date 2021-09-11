@@ -11,7 +11,7 @@
     <title>@dinhdjj</title>
 </head>
 
-<body>
+<body {{ $attributes }}>
     {{ $slot }}
 </body>
 
