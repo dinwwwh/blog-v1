@@ -8,6 +8,21 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 trait CreatorAndUpdater
 {
     /**
+     * This method is called upon instantiation of the Eloquent Model.
+     * Add `updater_id` and `creator_id` to fillable property of model
+     *
+     * @return
+     */
+    public function initializeCreatorAndUpdater(): void
+    {
+        # Just run when user use fillable property instead of guarded.
+        if (!empty($this->fillable)) {
+            $this->fillable[] = 'creator_id';
+            $this->fillable[] = 'updater_id';
+        }
+    }
+
+    /**
      * Declare updater and creator to fields of model
      *
      */

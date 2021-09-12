@@ -1,4 +1,4 @@
-<x-layouts.base class="relative bg-gray-50 overflow-auto sm:overflow-x-hidden">
+<x-layouts.base class="relative bg-gray-100 overflow-auto sm:overflow-x-hidden">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 min-h-screen">
         <header class="flex items-center justify-between py-4">
             <x-app.logo class="h-8 md:h-12" />

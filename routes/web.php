@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -58,4 +59,31 @@ Route::prefix('password')->group(function () {
     Route::patch('change', [AuthController::class, 'view'])
         ->middleware(['auth'])
         ->name('password.change');
+});
+
+/**
+ * ===========================================
+ * Tag routes
+ * ===========================================
+ */
+
+
+/**
+ * ===========================================
+ * Post routes
+ * ===========================================
+ */
+
+Route::prefix('posts')->group(function () {
+
+    Route::get('create', [PostController::class, 'viewCreate'])
+        ->middleware(['auth', 'verified'])
+        ->name('posts.viewCreate');
+    Route::post('create', [PostController::class, 'create'])
+        ->middleware(['auth', 'verified'])
+        ->name('posts.create');
+    Route::prefix('{post}')->group(function () {
+        Route::get('', [PostController::class, 'show'])
+            ->name('posts.show');
+    });
 });
