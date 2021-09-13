@@ -38,12 +38,13 @@ class PostController extends Controller
      */
     public function create(CreatePostRequest $request) //TODO fix creator always has id 1
     {
+
         try {
             DB::beginTransaction();
 
             $imagePath = $request->file('representative_image')->store('public/post-images');
             $post = Post::create(array_merge(
-                $request->only(['title', 'content']),
+                $request->only(['title', 'description', 'content']),
                 ['representative_image_path' => $imagePath]
             ));
 

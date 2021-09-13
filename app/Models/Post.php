@@ -11,7 +11,7 @@ class Post extends Model
 {
     use HasFactory, CreatorAndUpdater;
 
-    protected $fillable = ['title', 'content', 'representative_image_path'];
+    protected $fillable = ['title', 'description', 'content', 'representative_image_path'];
     protected $casts = [];
     protected $hidden = [];
 

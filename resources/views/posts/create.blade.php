@@ -15,6 +15,21 @@
                             </x-slot>
                         </x-inputs.base>
 
+                        <x-textareas.base :value="old('description')" :error="$errors->first('description')"
+                            name="description" rows="3">
+                            Mô tả
+                            <x-slot name="description">
+                                @error ('description')
+                                {{ $message }}
+                                @else
+                                Có thể sử dụng một chút
+                                <a href="https://stackedit.io/app" class="text-indigo-500 font-bold" target="_black">
+                                    MarkDown
+                                </a>.
+                                @enderror
+                            </x-slot>
+                        </x-textareas.base>
+
                         <x-textareas.base :value="old('content')" :error="$errors->first('content')" name="content"
                             rows="18">
                             Nội dung
