@@ -87,6 +87,16 @@ Route::prefix('posts')->group(function () {
     Route::post('create', [PostController::class, 'create'])
         ->middleware(['auth', 'verified'])
         ->name('posts.create');
+
+    Route::prefix('own')->group(function () {
+        Route::get('', [PostController::class, 'viewOwn'])
+            ->middleware(['auth', 'verified'])
+            ->name('posts.viewOwn');
+        Route::get('dashboard', [PostController::class, 'viewOwnDashboard'])
+            ->middleware(['auth', 'verified'])
+            ->name('posts.viewOwnDashboard');
+    });
+
     Route::prefix('{post}')->group(function () {
         Route::get('', [PostController::class, 'show'])
             ->name('posts.show');

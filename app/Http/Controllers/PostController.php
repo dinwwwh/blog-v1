@@ -26,6 +26,29 @@ class PostController extends Controller
     }
 
     /**
+     * View user own posts
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function viewOwn()
+    {
+        $posts = Post::where('creator_id', auth()->user()->getKey())
+            ->orderBy('id', 'desc')
+            ->paginate(12);
+        return view('posts.own', compact('posts'));
+    }
+
+    /**
+     * View user own dashboard of posts
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function viewOwnDashboard()
+    {
+        return view('posts.own-dashboard');
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response

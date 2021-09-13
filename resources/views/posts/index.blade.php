@@ -73,7 +73,7 @@
 
 
             <div class="pt-6">
-                {{ $posts->links('paginations.centeredNumbers') }}
+                {{ $posts->links('paginations.centered-numbers') }}
             </div>
         </div>
     </div>

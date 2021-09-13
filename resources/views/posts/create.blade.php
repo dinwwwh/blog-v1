@@ -1,5 +1,5 @@
 <x-layouts.primary>
-    <x-posts.layouts.own-management>
+    <x-posts.layouts.own-management class="mt-12">
         <div class="space-y-12">
 
             <x-forms.base method="POST" :action="route('posts.create')">
