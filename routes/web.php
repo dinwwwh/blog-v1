@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('posts.index');
 })->name('home');
 
 /**
@@ -75,6 +75,8 @@ Route::prefix('password')->group(function () {
  */
 
 Route::prefix('posts')->group(function () {
+    Route::get('', [PostController::class, 'index'])
+        ->name('posts.index');
 
     Route::get('create', [PostController::class, 'viewCreate'])
         ->middleware(['auth', 'verified'])

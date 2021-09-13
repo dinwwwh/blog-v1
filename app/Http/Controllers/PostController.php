@@ -18,7 +18,11 @@ class PostController extends Controller
      */
     public function index()
     {
-        view('posts.index', []);
+        $posts = Post::with('creator', 'tags')
+            ->orderBy('id', 'DESC')
+            ->paginate(12);
+
+        return view('posts.index', compact('posts'));
     }
 
     /**
@@ -36,7 +40,7 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(CreatePostRequest $request) //TODO fix creator always has id 1
+    public function create(CreatePostRequest $request)
     {
 
         try {

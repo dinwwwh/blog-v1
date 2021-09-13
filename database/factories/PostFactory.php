@@ -26,6 +26,7 @@ class PostFactory extends Factory
     {
         return [
             'title' => $this->faker->sentence(),
+            'description' => $this->faker->text(),
             'content' => $this->faker->text(),
             'representative_image_path' => Str::random(),
             'creator_id' => User::factory(),
