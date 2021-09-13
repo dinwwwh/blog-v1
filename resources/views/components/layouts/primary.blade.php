@@ -1,6 +1,6 @@
 <x-layouts.base class="relative bg-gray-100 overflow-auto sm:overflow-x-hidden">
     <div class="container mx-auto min-h-screen">
-        <header class="flex items-center justify-between py-4">
+        <header class="flex items-center justify-between py-4 mx-2 sm:px-4 lg:px-6">
             <x-app.logo class="h-8 md:h-12" />
 
             <nav class="hidden md:flex md:space-x-10">
