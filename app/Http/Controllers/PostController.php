@@ -36,7 +36,7 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(CreatePostRequest $request)
+    public function create(CreatePostRequest $request) //TODO fix creator always has id 1
     {
         try {
             DB::beginTransaction();
@@ -70,12 +70,11 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
     public function show(Post $post)
     {
-        //
+        return view('posts.show', compact('post'));
     }
 
     /**

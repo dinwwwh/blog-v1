@@ -1,5 +1,5 @@
 <x-layouts.base class="relative bg-gray-100 overflow-auto sm:overflow-x-hidden">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 min-h-screen">
+    <div class="container mx-auto min-h-screen">
         <header class="flex items-center justify-between py-4">
             <x-app.logo class="h-8 md:h-12" />
 
@@ -18,7 +18,7 @@
 
                     {{-- Dropdown menu for desktop --}}
                     <div x-on:click.away="isShowDropdown=false"
-                        class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+                        class="z-40 origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
                         tabindex="-1" x-show="isShowDropdown" x-transition:enter="transition ease-out duration-100"
                         x-transition:enter-start="transform opacity-0 scale-95"
                         x-transition:enter-end="transform opacity-100 scale-100"
@@ -125,13 +125,13 @@
         </header>
 
 
-        <main class="mt-16 px-4 sm:mt-24">
+        <main class="mx-2 sm:px-4 lg:px-6">
             {{ $slot }}
         </main>
     </div>
 
 
-    <footer class="mt-24 bg-gray-700 sm:mt-12">
+    <footer class="bg-gray-700 sm:mt-12">
         <div class="mx-auto max-w-md py-12 px-4 overflow-hidden sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
             <nav class="-mx-5 -my-2 flex flex-wrap justify-center" aria-label="Footer">
 
