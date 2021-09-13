@@ -17,7 +17,9 @@
     },
     "dependencies": {
         "@tailwindcss/forms": "^0.3.3",
+        "@tailwindcss/typography": "^0.4.1",
         "alpinejs": "^3.3.3",
+        "shiki": "^0.9.10",
         "tailwindcss": "^2.2.14"
     }
 }

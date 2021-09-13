@@ -5239,7 +5239,7 @@ window.alpinejs.start();
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
-__webpack_require__(/*! ./alpine */ "./resources/js/alpine.js");
+__webpack_require__(/*! ./alpine */ "./resources/js/alpine.js"); // require('shiki'); //TODO learn about markdown spatie and code highlighting
 
 /***/ }),
 
