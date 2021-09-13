@@ -39,12 +39,14 @@
                             Cài đặt
                         </a>
 
-                        <a href="#" @class(['block px-4 py-2 text-sm hover:bg-gray-100 text-gray-700'
-                            ,'bg-gray-100'=>request()->routeIs('login')
-                            ])
-                            tabindex="-1">
-                            Đăng xuất
-                        </a>
+                        <x-forms.base method="POST" :action="route('logout')">
+                            <button @class(['w-full text-left block px-4 py-2 text-sm hover:bg-gray-100 text-gray-700'
+                                ,'bg-gray-100'=>request()->routeIs('logout')
+                                ])
+                                tabindex="-1">
+                                Đăng xuất
+                            </button>
+                        </x-forms.base>
                     </div>
                 </div>
                 @else

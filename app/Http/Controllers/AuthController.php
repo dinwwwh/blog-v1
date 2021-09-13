@@ -40,4 +40,16 @@ class AuthController extends Controller
             ->back()
             ->with('errorLogin', 'Thông tin đăng nhập không chính xác.');
     }
+
+    /**
+     * Handle logout for user
+     *
+     */
+    public function logout(Request $request)
+    {
+        auth()->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect()->route('home');
+    }
 }
