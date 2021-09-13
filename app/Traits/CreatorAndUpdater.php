@@ -29,11 +29,11 @@ trait CreatorAndUpdater
     static public function bootCreatorAndUpdater(): void
     {
         static::creating(function ($model) {
-            $model->creator_id = $model->creator_id || auth()->user()?->getKey();
+            $model->creator_id = $model->creator_id ?? auth()->user()?->getKey();
         });
 
         static::updating(function ($model) {
-            $model->updater_id = $model->updater_id || auth()->user()?->getKey();
+            $model->updater_id = $model->updater_id ?? auth()->user()?->getKey();
         });
     }
 
