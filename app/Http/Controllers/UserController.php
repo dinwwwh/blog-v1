@@ -32,6 +32,7 @@ class UserController extends Controller
 
             $user = User::create([
                 'name' => $request->name,
+                'avatar_path' => "https://avatars.dicebear.com/api/male/$request->name.svg",
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
             ]);

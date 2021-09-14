@@ -13,8 +13,7 @@
                 @auth
                 <div class="h-12 w-auto relative cursor-pointer" x-data="{isShowDropdown: false}"
                     x-on:click="isShowDropdown = !isShowDropdown">
-                    <img class="w-full h-full rounded-full shadow"
-                        src="https://avatars.dicebear.com/api/male/{{ (auth()->user()->name) }}.svg" alt="avatar">
+                    <img class="w-full h-full rounded-full shadow" src="{{ auth()->user()->avatar_path }}" alt="avatar">
 
                     {{-- Dropdown menu for desktop --}}
                     <div x-on:click.away="isShowDropdown=false"

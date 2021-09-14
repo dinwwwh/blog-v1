@@ -27,8 +27,8 @@ class PostFactory extends Factory
         return [
             'title' => $this->faker->sentence(),
             'description' => $this->faker->text(),
-            'content' => $this->faker->text(),
-            'representative_image_path' => Str::random(),
+            'content' => $this->faker->text(1000),
+            'representative_image_path' => "https://picsum.photos/id/" . rand(1, 999) . "/1920/1080",
             'creator_id' => User::factory(),
             'updater_id' => User::factory(),
         ];

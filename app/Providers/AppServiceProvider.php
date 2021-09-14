@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\ServiceProvider;
+use Storage;
+use Str;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -14,7 +16,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        Storage::macro('urlSmartly', function ($path) {
+            if (Str::contains($path, ['https://', 'http://']))
+                return $path;
+            return $this->url($path);
+        });
     }
 
     /**

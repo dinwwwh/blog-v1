@@ -18,8 +18,8 @@
                 @foreach ($posts as $post)
                 <div class="flex flex-col rounded-lg shadow-lg overflow-hidden">
                     <div class="flex-shrink-0">
-                        <img class="h-48 w-full object-cover" src="{{ Storage::url($post->representative_image_path) }}"
-                            alt="">
+                        <img class="h-48 w-full object-cover"
+                            src="{{ Storage::urlSmartly($post->representative_image_path) }}" alt="">
                     </div>
                     <div class="flex-1 bg-white p-6 flex flex-col justify-between">
                         <div class="flex-1">
@@ -41,9 +41,7 @@
                             <div class="flex-shrink-0">
                                 <a href="#">
                                     <span class="sr-only">{{ $post->creator->name }}</span>
-                                    <img class="h-10 w-10 rounded-full"
-                                        src="https://avatars.dicebear.com/api/male/{{ $post->creator->name }}.svg"
-                                        alt="">
+                                    <img class="h-10 w-10 rounded-full" src="{{ $post->creator->avatar_path }}" alt="">
                                 </a>
                             </div>
                             <div class="ml-3">

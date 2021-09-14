@@ -27,7 +27,7 @@
                         <figure>
                             <div class="aspect-w-12 aspect-h-7 lg:aspect-none">
                                 <img class="rounded-lg shadow-lg object-cover object-center"
-                                    src="{{ Storage::url($post->representative_image_path) }}"
+                                    src="{{ Storage::urlSmartly($post->representative_image_path) }}"
                                     alt="Whitney leaning against a railing on a downtown street" width="1184"
                                     height="1376">
                             </div>
