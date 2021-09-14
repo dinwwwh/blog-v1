@@ -25,18 +25,18 @@
                         x-transition:leave="transition ease-in duration-75"
                         x-transition:leave-start="transform opacity-100 scale-100"
                         x-transition:leave-end="transform opacity-0 scale-95">
-                        <a href="#" @class(['block px-4 py-2 text-sm hover:bg-gray-100 text-gray-700'
-                            ,'bg-gray-100'=>request()->routeIs('login')
+                        <a href="{{ route('posts.create') }}" @class(['block px-4 py-2 text-sm hover:bg-gray-100
+                            text-gray-700' ,'bg-gray-100'=>request()->routeIs('posts.create')
                             ])
                             tabindex="-1">
-                            Profile
+                            Đăng bài
                         </a>
 
-                        <a href="#" @class(['block px-4 py-2 text-sm hover:bg-gray-100 text-gray-700'
-                            ,'bg-gray-100'=>request()->routeIs('login')
+                        <a href="{{ route('password.viewChange') }}" @class(['block px-4 py-2 text-sm hover:bg-gray-100
+                            text-gray-700' ,'bg-gray-100'=>request()->routeIs('password.viewChange')
                             ])
                             tabindex="-1">
-                            Cài đặt
+                            Đổi mật khẩu
                         </a>
 
                         <x-forms.base method="POST" :action="route('logout')">
@@ -102,18 +102,20 @@
                         </div>
 
                         @auth
-                        <a href="#"
+                        <a href="{{ route('posts.create') }}"
                             class="block w-full px-5 py-3 text-center font-medium text-indigo-600 bg-gray-50 hover:bg-gray-100">
-                            Profile
+                            Đăng bài
                         </a>
-                        <a href="#"
+                        <a href="{{ route('password.viewChange') }}"
                             class="block w-full px-5 py-3 text-center font-medium text-indigo-600 bg-gray-50 hover:bg-gray-100">
-                            Cài đặt
+                            Đổi mật khẩu
                         </a>
-                        <a href="#"
-                            class="block w-full px-5 py-3 text-center font-medium text-indigo-600 bg-gray-50 hover:bg-gray-100">
-                            Đăng xuất
-                        </a>
+                        <x-forms.base method="POST" :action="route('logout')">
+                            <button type="submit"
+                                class="block px-5 py-3 text-center font-medium text-indigo-600 bg-gray-50 hover:bg-gray-100 w-full">
+                                Đăng xuất
+                            </button>
+                        </x-forms.base>
                         @else
                         <a href="{{ route('login') }}"
                             class="block w-full px-5 py-3 text-center font-medium text-indigo-600 bg-gray-50 hover:bg-gray-100">

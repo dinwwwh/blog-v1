@@ -56,10 +56,10 @@ Route::prefix('password')->group(function () {
     Route::patch('reset', [AuthController::class, 'view'])
         ->middleware(['guest'])
         ->name('password.reset');
-    Route::get('change', [AuthController::class, 'view'])
+    Route::get('change', [AuthController::class, 'viewChangePassword'])
         ->middleware(['auth'])
-        ->name('password.change');
-    Route::patch('change', [AuthController::class, 'view'])
+        ->name('password.viewChange');
+    Route::patch('change', [AuthController::class, 'changePassword'])
         ->middleware(['auth'])
         ->name('password.change');
 });
