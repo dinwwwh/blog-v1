@@ -1,7 +1,6 @@
 <x-layouts.primary>
     <div class="relative bg-gray-50 pt-16 pb-20 px-4 sm:px-6 lg:pt-24 lg:pb-28 lg:px-8">
-        <div class="absolute inset-0">
-            <div class="bg-white h-1/3 sm:h-2/3"></div>
+        <div class="absolute inset-0 pt-6 pr-6">
         </div>
         <div class="relative max-w-7xl mx-auto">
             <div class="text-center">
@@ -13,8 +12,23 @@
                     sed.
                 </p>
             </div>
-            <div class="mt-12 max-w-lg mx-auto grid gap-5 lg:grid-cols-3 lg:max-w-none">
 
+            <form method="GET" :action="route('posts.index')" class="flex gap-3 justify-end items-center mt-2">
+                <p class="text-sm text-gray-500">Có {{ $posts->total() }} bài viết phù hợp</p>
+                <x-inputs.base class="min-w-[24%]" :value="request()->search" name="search" placeholder="Từ khóa">
+                </x-inputs.base>
+                <button type="submit" class="text-white bg-indigo-600 p-2 rounded mt-1 mb-2">
+                    <x-icons.search class="h-6 w-6" />
+                </button>
+            </form>
+
+            @if ($posts->total() == 0)
+            <div class="mt-12 max-w-lg mx-auto">
+
+            </div>
+            @endif
+
+            <div class="mt-12 max-w-lg mx-auto grid gap-5 lg:grid-cols-3 lg:max-w-none">
                 @foreach ($posts as $post)
                 <div class="flex flex-col rounded-lg shadow-lg overflow-hidden">
                     <div class="flex-shrink-0">
@@ -67,7 +81,6 @@
                     </div>
                 </div>
                 @endforeach
-
             </div>
 
 

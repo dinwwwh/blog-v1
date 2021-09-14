@@ -16,11 +16,19 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $posts = Post::with('creator', 'tags')
-            ->orderBy('id', 'DESC')
-            ->paginate(12);
+        if ($request->search) {
+            $posts = Post::search($request->search)
+                ->paginate(12)
+                ->withQueryString();
+            $posts->load('creator', 'tags');
+        } else {
+            $posts = Post::with('creator', 'tags')
+                ->orderBy('id', 'DESC')
+                ->paginate(12)
+                ->withQueryString();
+        }
 
         return view('posts.index', compact('posts'));
     }
