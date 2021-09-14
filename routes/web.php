@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
+use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,6 +16,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('test', function () {
+    return Post::search('fhdjfhskh4k34h3k2j')->paginate(20);
+});
 
 Route::get('/', function () {
     return redirect()->route('posts.index');

@@ -6,10 +6,11 @@ use App\Traits\CreatorAndUpdater;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Laravel\Scout\Searchable;
 
 class Post extends Model
 {
-    use HasFactory, CreatorAndUpdater;
+    use HasFactory, CreatorAndUpdater, Searchable;
 
     protected $fillable = ['title', 'description', 'content', 'representative_image_path'];
     protected $casts = [];
