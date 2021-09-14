@@ -16,11 +16,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        Storage::macro('urlSmartly', function ($path) {
-            if (Str::contains($path, ['https://', 'http://']))
-                return $path;
-            return $this->url($path);
-        });
     }
 
     /**
@@ -31,5 +26,11 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Model::preventLazyLoading(!$this->app->isProduction());
+
+        Storage::macro('urlSmartly', function ($path) {
+            if (Str::contains($path, ['https://', 'http://']))
+                return $path;
+            return $this->url($path);
+        });
     }
 }
