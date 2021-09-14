@@ -11,7 +11,7 @@
 
             <div class="hidden md:block">
                 @auth
-                <div class="h-12 w-auto relative cursor-pointer" x-data="{isShowDropdown: false}"
+                <div class="h-12 w-12 relative cursor-pointer" x-data="{isShowDropdown: false}"
                     x-on:click="isShowDropdown = !isShowDropdown">
                     <img class="w-full h-full rounded-full shadow"
                         src="{{ Storage::urlSmartly( auth()->user()->avatar_path) }}" alt="avatar">

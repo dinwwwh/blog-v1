@@ -41,7 +41,8 @@
                             <div class="flex-shrink-0">
                                 <a href="#">
                                     <span class="sr-only">{{ $post->creator->name }}</span>
-                                    <img class="h-10 w-10 rounded-full" src="{{ $post->creator->avatar_path }}" alt="">
+                                    <img class="h-10 w-10 rounded-full"
+                                        src="{{ Storage::urlSmartly($post->creator->avatar_path) }}" alt="avatar">
                                 </a>
                             </div>
                             <div class="ml-3">
