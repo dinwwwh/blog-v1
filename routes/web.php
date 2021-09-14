@@ -49,6 +49,13 @@ Route::post('register', [UserController::class, 'register'])
     ->middleware(['guest'])
     ->name('register');
 
+Route::get('profile', [AuthController::class, 'viewUpdateProfile'])
+    ->middleware(['auth'])
+    ->name('profile.viewUpdate');
+Route::patch('profile', [AuthController::class, 'updateProfile'])
+    ->middleware(['auth'])
+    ->name('profile.update');
+
 Route::prefix('password')->group(function () {
     Route::get('reset', [AuthController::class, 'view'])
         ->middleware(['guest'])

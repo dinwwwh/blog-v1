@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ChangePasswordRequest;
+use App\Http\Requests\UpdateProfileRequest;
 use DB;
 use Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Storage;
 
 class AuthController extends Controller
 {
@@ -55,6 +57,42 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect()->route('home');
+    }
+
+    /**
+     * Display change profile screen
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function viewUpdateProfile()
+    {
+        return view('auth.update-profile');
+    }
+
+    /**
+     * Handle update profile
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function updateProfile(UpdateProfileRequest $request)
+    {
+        try {
+            DB::beginTransaction();
+            $data = [
+                'name' => $request->name,
+            ];
+            if ($request->hasFile('avatar')) {
+                $data['avatar_path'] = $request->file('avatar')->store('public/avatars');
+            }
+            auth()->user()->update($data);
+            DB::commit();
+        } catch (\Throwable $th) {
+            Storage::delete($data['avatar_path'] ?? null);
+            DB::rollback();
+            throw $th;
+        }
+
+        return redirect()->back()->with('successUpdateProfile', 'Cập nhật hồ sơ thành công.');
     }
 
     /**

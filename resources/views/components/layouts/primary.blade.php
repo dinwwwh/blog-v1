@@ -13,7 +13,8 @@
                 @auth
                 <div class="h-12 w-auto relative cursor-pointer" x-data="{isShowDropdown: false}"
                     x-on:click="isShowDropdown = !isShowDropdown">
-                    <img class="w-full h-full rounded-full shadow" src="{{ auth()->user()->avatar_path }}" alt="avatar">
+                    <img class="w-full h-full rounded-full shadow"
+                        src="{{ Storage::urlSmartly( auth()->user()->avatar_path) }}" alt="avatar">
 
                     {{-- Dropdown menu for desktop --}}
                     <div x-on:click.away="isShowDropdown=false"
@@ -24,6 +25,14 @@
                         x-transition:leave="transition ease-in duration-75"
                         x-transition:leave-start="transform opacity-100 scale-100"
                         x-transition:leave-end="transform opacity-0 scale-95">
+
+                        <a href="{{ route('profile.viewUpdate') }}" @class(['block px-4 py-2 text-sm hover:bg-gray-100
+                            text-gray-700' ,'bg-gray-100'=>request()->routeIs('profile.viewUpdate')
+                            ])
+                            tabindex="-1">
+                            Hồ sơ
+                        </a>
+
                         <a href="{{ route('posts.create') }}" @class(['block px-4 py-2 text-sm hover:bg-gray-100
                             text-gray-700' ,'bg-gray-100'=>request()->routeIs('posts.create')
                             ])
@@ -101,6 +110,10 @@
                         </div>
 
                         @auth
+                        <a href="{{ route('profile.viewUpdate') }}"
+                            class="block w-full px-5 py-3 text-center font-medium text-indigo-600 bg-gray-50 hover:bg-gray-100">
+                            Hồ sơ
+                        </a>
                         <a href="{{ route('posts.create') }}"
                             class="block w-full px-5 py-3 text-center font-medium text-indigo-600 bg-gray-50 hover:bg-gray-100">
                             Đăng bài
