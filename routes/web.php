@@ -17,10 +17,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('test', function () {
-    return Post::search('fhdjfhskh4k34h3k2j')->paginate(20);
-});
-
 Route::get('/', function () {
     return redirect()->route('posts.index');
 })->name('home');
