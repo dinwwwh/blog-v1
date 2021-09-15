@@ -33,12 +33,14 @@
                             Hồ sơ
                         </a>
 
+                        @can('create', 'App\Models\Post')
                         <a href="{{ route('posts.create') }}" @class(['block px-4 py-2 text-sm hover:bg-gray-100
                             text-gray-700' ,'bg-gray-100'=>request()->routeIs('posts.create')
                             ])
                             tabindex="-1">
                             Đăng bài
                         </a>
+                        @endcan
 
                         <a href="{{ route('password.viewChange') }}" @class(['block px-4 py-2 text-sm hover:bg-gray-100
                             text-gray-700' ,'bg-gray-100'=>request()->routeIs('password.viewChange')
@@ -114,10 +116,12 @@
                             class="block w-full px-5 py-3 text-center font-medium text-indigo-600 bg-gray-50 hover:bg-gray-100">
                             Hồ sơ
                         </a>
+                        @can('create', 'App\Models\Post')
                         <a href="{{ route('posts.create') }}"
                             class="block w-full px-5 py-3 text-center font-medium text-indigo-600 bg-gray-50 hover:bg-gray-100">
                             Đăng bài
                         </a>
+                        @endcan
                         <a href="{{ route('password.viewChange') }}"
                             class="block w-full px-5 py-3 text-center font-medium text-indigo-600 bg-gray-50 hover:bg-gray-100">
                             Đổi mật khẩu

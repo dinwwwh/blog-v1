@@ -1,6 +1,12 @@
 <?php
 
 return [
+    /**
+     * Contain email of admins
+     * Use to determine whether a user is admin
+     *
+     */
+    'admins' => array_map(fn ($str) => trim($str), explode(',', env('APP_ADMINS', ''))),
 
     /*
     |--------------------------------------------------------------------------

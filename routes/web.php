@@ -89,18 +89,18 @@ Route::prefix('posts')->group(function () {
         ->name('posts.index');
 
     Route::get('create', [PostController::class, 'viewCreate'])
-        ->middleware(['auth', 'verified'])
+        ->middleware(['auth', 'verified', 'can:create,App\Models\Post'])
         ->name('posts.viewCreate');
     Route::post('create', [PostController::class, 'create'])
-        ->middleware(['auth', 'verified'])
+        ->middleware(['auth', 'verified', 'can:create,App\Models\Post'])
         ->name('posts.create');
 
     Route::prefix('own')->group(function () {
         Route::get('', [PostController::class, 'viewOwn'])
-            ->middleware(['auth', 'verified'])
+            ->middleware(['auth', 'verified', 'can:create,App\Models\Post'])
             ->name('posts.viewOwn');
         Route::get('dashboard', [PostController::class, 'viewOwnDashboard'])
-            ->middleware(['auth', 'verified'])
+            ->middleware(['auth', 'verified', 'can:create,App\Models\Post'])
             ->name('posts.viewOwnDashboard');
     });
 
