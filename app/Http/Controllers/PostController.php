@@ -38,11 +38,19 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function viewOwn()
+    public function viewOwn(Request $request)
     {
-        $posts = Post::where('creator_id', auth()->user()->getKey())
-            ->orderBy('id', 'desc')
-            ->paginate(12);
+        if ($request->search) {
+            $posts = Post::search($request->search)
+                ->where('creator_id', auth()->user()->getKey())
+                ->paginate(12)
+                ->withQueryString();
+        } else {
+            $posts = Post::where('creator_id', auth()->user()->getKey())
+                ->orderBy('id', 'desc')
+                ->paginate(12);
+        }
+
         return view('posts.own', compact('posts'));
     }
 

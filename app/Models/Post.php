@@ -17,6 +17,17 @@ class Post extends Model
     protected $hidden = [];
 
     /**
+     * Laravel-scout with meilisearch setup
+     *
+     */
+    public $meilisearchFilterable = ['creator_id', 'updater_id', 'tags'];
+    public function toSearchableArray(): array
+    {
+        $this->load('tags');
+        return $this->toArray();
+    }
+
+    /**
      * Get tags of this model
      *
      */
