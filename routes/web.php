@@ -107,5 +107,12 @@ Route::prefix('posts')->group(function () {
     Route::prefix('{post}')->group(function () {
         Route::get('', [PostController::class, 'show'])
             ->name('posts.show');
+
+        Route::get('update', [PostController::class, 'viewUpdate'])
+            ->middleware(['auth', 'verified', 'can:update,post'])
+            ->name('posts.viewUpdate');
+        Route::put('update', [PostController::class, 'update'])
+            ->middleware(['auth', 'verified', 'can:update,post'])
+            ->name('posts.update');
     });
 });

@@ -2,6 +2,15 @@
 
     <div class="bg-white overflow-hidden">
         <div class="relative max-w-7xl mx-auto pb-16 pt-24 px-4 sm:px-6 lg:px-8">
+            @can('update', $post)
+            <div class="rounded-md mb-8 flex">
+                <a href="{{ route('posts.update', ['post' => $post]) }}"
+                    class="py-2 px-4 bg-indigo-600 text-white rounded flex items-center gap-2">
+                    <x-icons.pencil class="w-5 h-5" />
+                    Chỉnh sửa
+                </a>
+            </div>
+            @endcan
             <div class="hidden lg:block bg-gray-50 absolute top-0 bottom-0 left-3/4 w-screen"></div>
             <div class="mx-auto text-base max-w-prose lg:grid lg:grid-cols-2 lg:gap-8 lg:max-w-none">
                 <div>

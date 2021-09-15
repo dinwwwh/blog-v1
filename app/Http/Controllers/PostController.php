@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreatePostRequest;
+use App\Http\Requests\UpdatePostRequest;
 use App\Models\Post;
 use App\Models\Tag;
 use DB;
@@ -122,26 +123,52 @@ class PostController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Display form to edit post.
      *
-     * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function viewUpdate(Post $post)
     {
-        //
+        return view('posts.update', compact('post'));
     }
 
     /**
-     * Update the specified resource in storage.
+     * Handle update post.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(UpdatePostRequest $request, Post $post)
     {
-        //
+        try {
+            DB::beginTransaction();
+
+            $data = $request->only(['title', 'description', 'content']);
+            if ($request->hasFile('representative_image')) {
+                $imagePath = $post->representative_image_path;
+                $data['representative_image_path'] = $request->file('representative_image')->store('public/post-images');
+            }
+
+            $post->update($data);
+
+            // Tag relationship
+            $tagNames = collect(explode(',', $request->tag_names))
+                ->map(function ($tagName) {
+                    return trim($tagName, ' ,');
+                })
+                ->filter(function ($tagName) {
+                    return !empty($tagName);
+                });
+            $post->tags()->sync(Tag::firstOrCreateMany($tagNames));
+
+            Storage::delete($imagePath ?? null);
+            DB::commit();
+        } catch (\Throwable $th) {
+            Storage::delete($data['representative_image_path'] ?? null);
+            DB::rollback();
+            throw $th;
+        }
+
+        return redirect()->back()->with('successUpdate', 'Cập nhật thành công.');
     }
 
     /**
