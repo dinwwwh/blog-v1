@@ -115,10 +115,7 @@ return [
             /*
              * The disk names on which the backups will be stored.
              */
-            'disks' => [
-                'local',
-                'dropbox',
-            ],
+            'disks' => explode(',', trim(env('BACKUP_DISKS'), ' ,')),
         ],
 
         /*
@@ -167,7 +164,7 @@ return [
         'notifiable' => \Spatie\Backup\Notifications\Notifiable::class,
 
         'mail' => [
-            'to' => explode(',', env('BACKUP_NOTIFIABLE_EMAILS', 'you@example.com')),
+            'to' => explode(',', trim(env('BACKUP_NOTIFIABLE_EMAILS', 'you@example.com'), ' ,')),
 
             'from' => [
                 'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
